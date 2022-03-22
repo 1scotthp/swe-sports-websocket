@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Ingress
+metadata:
+  annotations:
+    beta.cloud.google.com/backend-config: '{"ports": {"80":"my-backendconfig"}}'
+      name: my-ingress
+    # kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: nginx-1
+            port:
+              number: 80
+      # - path: /v2
+      #   pathType: ImplementationSpecific
+      #   backend:
+      #     service:
+      #       name: nginx-1
+      #       port:
+      #         number: 80
